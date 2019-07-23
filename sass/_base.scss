@@ -25,6 +25,11 @@ $color-grey-dark-2: #6D5D4B;
 $font-primary: 'Nunito', sans-serif;
 $font-display: 'Josefin Sans', sans-serif;
 
+// RESPONSIVE BREAKPOINTS
+$bp-largest: 75em;   // 1200px
+$bp-large: 62.5em;   // 1000px  1000/16 = 62.5
+$bp-medium: 50em;    // 800px;
+$bp-small: 37.5em;    // 600px;
 
 *,
 *::before,
@@ -37,6 +42,10 @@ $font-display: 'Josefin Sans', sans-serif;
 html {
     box-sizing: border-box;
     font-size: 62.5%; // 10px/16px = 62.5% -> 1rem = 10px
+    
+    @media only screen and (max-width: $bp-largest) {
+        font-size: 50%;
+    }
 }
 
 body {
@@ -49,12 +58,20 @@ body {
 .grid-container {
     display: grid;
     grid-template-rows: 80vh repeat(5, min-content);
-    
     grid-template-columns: 
         [full-start] minmax(6rem, 1fr) 
         [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) 
         [center-end] minmax(6rem, 1fr) 
         [full-end];
+    
+    
+    @media only screen and (max-width: $bp-medium) {
+        grid-template-rows: 80vh repeat(8, min-content);
+    }
+    
+    @media only screen and (max-width: $bp-small) {
+        grid-template-rows: 90vh repeat(8, min-content);
+    }
 }
 
 .js-show {
